@@ -213,24 +213,10 @@ export const catalog: Category[] = [
     items: [
       {
         id: "ac-general",
-        name: "AC General Service",
+        name: "AC Service",
         description: "Per AC (1 to 2.5 tons)",
         original: 3300, price: 2500, rating: 4.3,
         image: acGeneralImg,
-        includes: [
-          "Dismounting of indoor unit",
-          "Cleaning of indoor unit with pressure washer",
-          "Cleaning of outdoor unit with pressure washer",
-          "Mounting of indoor unit after cleaning",
-        ],
-        excludes: [
-          "Wash the indoor unit without dismounting",
-          "Dismounting of outdoor unit",
-          "Any type of repair",
-          "Any type of material",
-          "Any type of gas",
-          "Ladder",
-        ],
       },
       {
         id: "ac-install",
