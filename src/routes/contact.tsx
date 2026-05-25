@@ -17,7 +17,7 @@ function ContactPage() {
   const cards = [
     { icon: MapPin, title: "Address", body: "Plaza no: 181, Civic Center, Bahria Town, Islamabad" },
     { icon: Phone, title: "Phone", body: "0325 5333222", href: "tel:+923255333222" },
-    { icon: Clock, title: "Hours", body: "Open 24 hours · 7 days a week" },
+    { icon: Clock, title: "Hours", body: "9:00 AM – 9:00 PM · 7 days a week" },
   ];
 
   return (
