@@ -240,7 +240,7 @@ export const catalog: Category[] = [
       },
       {
         id: "ac-repair",
-        name: "AC Repairing",
+        name: "AC Repairing and Gas Filling",
         description: "Visit and Inspection Charges",
         original: 1000, price: 800, rating: 4.3,
         image: acRepairImg,
