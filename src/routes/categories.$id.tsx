@@ -55,7 +55,7 @@ function CategoryPage() {
             <ArrowLeft className="h-3.5 w-3.5" /> All categories
           </Link>
           <h1 className="text-2xl sm:text-4xl font-bold">{cat.name}</h1>
-          <p className="text-muted-foreground mt-1 max-w-md text-sm sm:text-base">{cat.blurb}</p>
+          <p className="text-foreground mt-1 max-w-md text-sm sm:text-base font-semibold">{cat.blurb}</p>
         </div>
       </div>
 
