@@ -13,10 +13,9 @@ import { LIABILITY_DISCLAIMER } from "@/lib/terms";
 export function CartDrawer() {
   const { items, count, total, originalTotal, isOpen, setOpen, inc, dec, remove, clear } = useCart();
   const [step, setStep] = useState<"cart" | "checkout">("cart");
-  const [info, setInfo] = useState({ name: "", phone: "", email: "", address: "", date: "", notes: "" });
+  const [info, setInfo] = useState({ name: "", phone: "", address: "", notes: "" });
   const [submitting, setSubmitting] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const today = new Date().toISOString().split("T")[0];
   const savings = originalTotal - total;
 
   const WHATSAPP_NUMBER = "923255333222";
@@ -25,9 +24,6 @@ export function CartDrawer() {
     if (items.length === 0) return toast.error("Add at least one service");
     if (!info.name.trim() || info.name.trim().length < 2) return toast.error("Enter your name");
     if (!info.phone.trim() || info.phone.trim().length < 7) return toast.error("Enter a valid phone");
-    if (info.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(info.email.trim())) {
-      return toast.error("Enter a valid email");
-    }
     if (!acceptedTerms) return toast.error("Please accept the Terms & Conditions to continue");
 
     setSubmitting(true);
@@ -40,9 +36,7 @@ export function CartDrawer() {
         `Hello, I want to confirm my booking.\n\n` +
         `Name: ${info.name}\n` +
         `Phone: ${info.phone}\n` +
-        (info.email.trim() ? `Email: ${info.email}\n` : "") +
         (info.address.trim() ? `Address: ${info.address}\n` : "") +
-        (info.date ? `Preferred Date: ${info.date}\n` : "") +
         `\nSelected Services:\n${serviceList}\n\n` +
         `Total: Rs ${total.toLocaleString()}\n\n` +
         `Additional Notes:\n${info.notes.trim() || "—"}`;
@@ -58,7 +52,7 @@ export function CartDrawer() {
       clear();
       setOpen(false);
       setStep("cart");
-      setInfo({ name: "", phone: "", email: "", address: "", date: "", notes: "" });
+      setInfo({ name: "", phone: "", address: "", notes: "" });
       setAcceptedTerms(false);
     } catch {
       toast.error("Unable to open WhatsApp. Please try again.");
@@ -163,14 +157,6 @@ export function CartDrawer() {
               <div className="space-y-1.5">
                 <Label htmlFor="cp">Phone</Label>
                 <Input id="cp" value={info.phone} onChange={(e) => setInfo({ ...info, phone: e.target.value })} placeholder="03XX XXXXXXX" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="ce">Email (optional)</Label>
-                <Input id="ce" type="email" value={info.email} onChange={(e) => setInfo({ ...info, email: e.target.value })} placeholder="you@example.com" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="cd">Preferred Date</Label>
-                <Input id="cd" type="date" min={today} value={info.date} onChange={(e) => setInfo({ ...info, date: e.target.value })} />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="ca">Address</Label>
