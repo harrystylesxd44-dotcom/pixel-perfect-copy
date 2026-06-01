@@ -171,7 +171,7 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wide text-brand mb-1.5">Includes</p>
                     <ul className="space-y-1">
-                      {item.includes.map((line) => (
+                      {item.includes!.map((line) => (
                         <li key={line} className="flex items-start gap-2 text-xs text-foreground/90">
                           <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-green-600" />
                           <span>{line}</span>
@@ -184,7 +184,7 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wide text-destructive mb-1.5">Does Not Include</p>
                     <ul className="space-y-1">
-                      {item.excludes.map((line) => (
+                      {item.excludes!.map((line) => (
                         <li key={line} className="flex items-start gap-2 text-xs text-muted-foreground">
                           <X className="h-3.5 w-3.5 mt-0.5 shrink-0 text-destructive" />
                           <span>{line}</span>
