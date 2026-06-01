@@ -1,2 +1,2 @@
 export const LIABILITY_DISCLAIMER =
-  "The company is not responsible or liable for any damage, malfunction, failure, burnout, blown fuse, electrical fault, breakage, or other issues that occur to a customer's equipment, devices, appliances, or property during or after the service, unless caused by proven negligence or willful misconduct by the company. By proceeding, you acknowledge and accept these Terms & Conditions.";
+  "We are not liable for any damage or malfunction to your equipment or property, unless caused by our proven negligence.";

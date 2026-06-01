@@ -163,10 +163,6 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
             </button>
             {showTerms && (
               <div className="mt-3 space-y-3 animate-fade-in">
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-wide text-destructive mb-1.5">Liability Disclaimer</p>
-                  <p className="text-xs text-foreground/90 leading-relaxed">{LIABILITY_DISCLAIMER}</p>
-                </div>
                 {hasIncludes && (
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wide text-brand mb-1.5">Includes</p>
@@ -193,6 +189,10 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
                     </ul>
                   </div>
                 )}
+                <div className="border-t border-border pt-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-destructive mb-1.5">Liability Disclaimer</p>
+                  <p className="text-xs text-foreground/90 leading-relaxed">{LIABILITY_DISCLAIMER}</p>
+                </div>
               </div>
             )}
         </div>
