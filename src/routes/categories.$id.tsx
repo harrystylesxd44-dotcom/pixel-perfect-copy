@@ -5,6 +5,7 @@ import { catalog as baseCatalog, type CatalogItem } from "@/components/site/cart
 import { useLiveCatalog } from "@/hooks/use-live-catalog";
 import { useCart } from "@/components/site/cart/CartContext";
 import { Button } from "@/components/ui/button";
+import { LIABILITY_DISCLAIMER } from "@/lib/terms";
 
 export const Route = createFileRoute("/categories/$id")({
   head: ({ params }) => {
@@ -105,7 +106,8 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
   const line = items.find((i) => i.id === item.id);
   const off = Math.round(((item.original - item.price) / item.original) * 100);
   const [showTerms, setShowTerms] = useState(false);
-  const hasTerms = (item.includes && item.includes.length > 0) || (item.excludes && item.excludes.length > 0);
+  const hasIncludes = !!(item.includes && item.includes.length > 0);
+  const hasExcludes = !!(item.excludes && item.excludes.length > 0);
 
   return (
     <div className="card-hover group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card">
@@ -149,8 +151,7 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
             </Button>
           )}
         </div>
-        {hasTerms && (
-          <div className="mt-3 border-t border-border pt-3">
+        <div className="mt-3 border-t border-border pt-3">
             <button
               type="button"
               onClick={() => setShowTerms((v) => !v)}
@@ -162,11 +163,15 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
             </button>
             {showTerms && (
               <div className="mt-3 space-y-3 animate-fade-in">
-                {item.includes && item.includes.length > 0 && (
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-destructive mb-1.5">Liability Disclaimer</p>
+                  <p className="text-xs text-foreground/90 leading-relaxed">{LIABILITY_DISCLAIMER}</p>
+                </div>
+                {hasIncludes && (
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wide text-brand mb-1.5">Includes</p>
                     <ul className="space-y-1">
-                      {item.includes.map((line) => (
+                      {item.includes!.map((line) => (
                         <li key={line} className="flex items-start gap-2 text-xs text-foreground/90">
                           <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-green-600" />
                           <span>{line}</span>
@@ -175,11 +180,11 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
                     </ul>
                   </div>
                 )}
-                {item.excludes && item.excludes.length > 0 && (
+                {hasExcludes && (
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wide text-destructive mb-1.5">Does Not Include</p>
                     <ul className="space-y-1">
-                      {item.excludes.map((line) => (
+                      {item.excludes!.map((line) => (
                         <li key={line} className="flex items-start gap-2 text-xs text-muted-foreground">
                           <X className="h-3.5 w-3.5 mt-0.5 shrink-0 text-destructive" />
                           <span>{line}</span>
@@ -190,8 +195,7 @@ function ServiceCard({ item, categoryName, image }: { item: CatalogItem; categor
                 )}
               </div>
             )}
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

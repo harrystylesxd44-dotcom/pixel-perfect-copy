@@ -7,12 +7,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useCart } from "./cart/CartContext";
+import { Checkbox } from "@/components/ui/checkbox";
+import { LIABILITY_DISCLAIMER } from "@/lib/terms";
 
 export function CartDrawer() {
   const { items, count, total, originalTotal, isOpen, setOpen, inc, dec, remove, clear } = useCart();
   const [step, setStep] = useState<"cart" | "checkout">("cart");
   const [info, setInfo] = useState({ name: "", phone: "", email: "", address: "", date: "", notes: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const today = new Date().toISOString().split("T")[0];
   const savings = originalTotal - total;
 
@@ -25,6 +28,7 @@ export function CartDrawer() {
     if (info.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(info.email.trim())) {
       return toast.error("Enter a valid email");
     }
+    if (!acceptedTerms) return toast.error("Please accept the Terms & Conditions to continue");
 
     setSubmitting(true);
     try {
@@ -55,6 +59,7 @@ export function CartDrawer() {
       setOpen(false);
       setStep("cart");
       setInfo({ name: "", phone: "", email: "", address: "", date: "", notes: "" });
+      setAcceptedTerms(false);
     } catch {
       toast.error("Unable to open WhatsApp. Please try again.");
     } finally {
@@ -181,9 +186,24 @@ export function CartDrawer() {
                   <span className="text-brand">Rs {total.toLocaleString()}</span>
                 </div>
               </div>
+              <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-3 space-y-2">
+                <p className="text-[11px] font-bold uppercase tracking-wide text-destructive">Terms &amp; Conditions — Liability Disclaimer</p>
+                <p className="text-xs text-foreground/90 leading-relaxed">{LIABILITY_DISCLAIMER}</p>
+                <label className="flex items-start gap-2 pt-1 cursor-pointer">
+                  <Checkbox
+                    id="accept-terms"
+                    checked={acceptedTerms}
+                    onCheckedChange={(v) => setAcceptedTerms(v === true)}
+                    className="mt-0.5"
+                  />
+                  <span className="text-xs font-semibold text-foreground">
+                    I have read and accept the Terms &amp; Conditions.
+                  </span>
+                </label>
+              </div>
             </div>
             <div className="border-t p-5 space-y-2 bg-background">
-              <Button onClick={submit} disabled={submitting} className="w-full h-12 rounded-full bg-brand hover:bg-brand text-brand-foreground font-semibold shadow-glow">
+              <Button onClick={submit} disabled={submitting || !acceptedTerms} className="w-full h-12 rounded-full bg-brand hover:bg-brand text-brand-foreground font-semibold shadow-glow disabled:opacity-60">
                 {submitting ? (
                   <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Opening WhatsApp…</>
                 ) : (
