@@ -153,7 +153,7 @@ export const catalog: Category[] = [
   {
     id: "cleaning",
     name: "Cleaning Services",
-    blurb: "Sofa, carpet, mattress, water tank, deep & solar panel cleaning — all in one place.",
+    blurb: "Sofa, carpet, mattress, curtain & deep cleaning — all in one place.",
     image: sofaImg,
     items: [
       { id: "sofa-1", name: "Sofa Cleaning", description: "Per seat deep shampoo cleaning.", original: 500, price: 350, rating: 4.6, image: sofaImg, subcategory: "Sofa Cleaning" },
@@ -179,6 +179,22 @@ export const catalog: Category[] = [
       { id: "mat-double", name: "Double Mattress Cleaning", description: "Double mattress deep clean.", original: 3700, price: 2000, rating: r(), image: mattressImg, subcategory: "Bed / Mattress Cleaning" },
       { id: "bed-1", name: "Bed Cleaning", description: "Bed frame & headboard cleaning.", original: 800, price: 500, rating: r(), image: mattressImg, subcategory: "Bed / Mattress Cleaning" },
 
+      { id: "deep-h1", name: "Full House Deep Cleaning (3–10 Marla)", description: "Per marla full house deep clean.", original: 700, price: 500, rating: r(), unit: "/ Marla", image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-r1", name: "Room Deep Cleaning (3–10 Marla)", description: "Single room deep clean.", original: 4500, price: 2100, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-k1", name: "Kitchen Deep Cleaning (3–10 Marla)", description: "Kitchen deep clean & degrease.", original: 4500, price: 2800, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-w1", name: "Washroom Deep Cleaning (3–10 Marla)", description: "Washroom deep clean & sanitize.", original: 4000, price: 2400, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-h2", name: "Full House Deep Cleaning (11 Marla – 3 Kanal)", description: "Per marla full house deep clean.", original: 700, price: 500, rating: r(), unit: "/ Marla", image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-r2", name: "Room Deep Cleaning (11 Marla – 3 Kanal)", description: "Larger room deep clean.", original: 5500, price: 2900, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-k2", name: "Kitchen Deep Cleaning (11 Marla – 3 Kanal)", description: "Larger kitchen deep clean.", original: 5000, price: 3500, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
+      { id: "deep-w2", name: "Washroom Deep Cleaning (10 Marla – 2 Kanal)", description: "Larger washroom deep clean.", original: 5000, price: 2900, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
+    ],
+  },
+  {
+    id: "water-tank",
+    name: "Water Tank Cleaning",
+    blurb: "Plastic & cement water tank deep cleaning and sanitization.",
+    image: cementTankImg,
+    items: [
       { id: "ptank-1", name: "150 – 300 Gallons", description: "Plastic tank, 150–300 gallons.", original: 2150, price: 1800, rating: r(), image: plasticTankImg, subcategory: "Plastic Water Tank Cleaning" },
       { id: "ptank-2", name: "350 – 500 Gallons", description: "Plastic tank, 350–500 gallons.", original: 2500, price: 2000, rating: r(), image: plasticTankImg, subcategory: "Plastic Water Tank Cleaning" },
       { id: "ptank-3", name: "550 – 1000 Gallons", description: "Plastic tank, 550–1000 gallons.", original: 3000, price: 2500, rating: r(), image: plasticTankImg, subcategory: "Plastic Water Tank Cleaning" },
@@ -189,19 +205,6 @@ export const catalog: Category[] = [
       { id: "ctank-u1", name: "Underground Tank 3/5ft – 5/5ft", description: "Underground cement tank, small.", original: 3500, price: 3000, rating: r(), image: undergroundTankImg, subcategory: "Cement Water Tank Cleaning" },
       { id: "ctank-u2", name: "Underground Tank 6/6ft – 8/8ft", description: "Underground cement tank, medium.", original: 4000, price: 3500, rating: r(), image: undergroundTankImg, subcategory: "Cement Water Tank Cleaning" },
       { id: "ctank-u3", name: "Underground Tank 9/9ft – 12/12ft", description: "Underground cement tank, large.", original: 6000, price: 5000, rating: r(), image: undergroundTankImg, subcategory: "Cement Water Tank Cleaning" },
-
-      { id: "deep-h1", name: "Full House Deep Cleaning (3–10 Marla)", description: "Per marla full house deep clean.", original: 700, price: 500, rating: r(), unit: "/ Marla", image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-r1", name: "Room Deep Cleaning (3–10 Marla)", description: "Single room deep clean.", original: 4500, price: 2100, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-k1", name: "Kitchen Deep Cleaning (3–10 Marla)", description: "Kitchen deep clean & degrease.", original: 4500, price: 2800, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-w1", name: "Washroom Deep Cleaning (3–10 Marla)", description: "Washroom deep clean & sanitize.", original: 4000, price: 2400, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-h2", name: "Full House Deep Cleaning (11 Marla – 3 Kanal)", description: "Per marla full house deep clean.", original: 700, price: 500, rating: r(), unit: "/ Marla", image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-r2", name: "Room Deep Cleaning (11 Marla – 3 Kanal)", description: "Larger room deep clean.", original: 5500, price: 2900, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-k2", name: "Kitchen Deep Cleaning (11 Marla – 3 Kanal)", description: "Larger kitchen deep clean.", original: 5000, price: 3500, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
-      { id: "deep-w2", name: "Washroom Deep Cleaning (10 Marla – 2 Kanal)", description: "Larger washroom deep clean.", original: 5000, price: 2900, rating: r(), image: deepImg, subcategory: "Deep Cleaning" },
-
-      { id: "solar-1", name: "3KW – 6KW", description: "Small residential solar systems.", original: 310, price: 290, rating: r(), unit: "/ KW", image: solarImg, subcategory: "Solar Panel Cleaning" },
-      { id: "solar-2", name: "7KW – 18KW", description: "Mid-size residential / commercial.", original: 220, price: 205, rating: r(), unit: "/ KW", image: solarImg, subcategory: "Solar Panel Cleaning" },
-      { id: "solar-3", name: "20KW – 40KW", description: "Large commercial solar systems.", original: 195, price: 160, rating: r(), unit: "/ KW", image: solarImg, subcategory: "Solar Panel Cleaning" },
     ],
   },
   {
