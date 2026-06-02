@@ -82,7 +82,11 @@ function CategoryPage() {
           return (
             <div className="space-y-10">
               {entries.map(([group, items]) => (
-                <section key={group || "other"}>
+                <section
+                  key={group || "other"}
+                  id={group ? group.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") : undefined}
+                  className="scroll-mt-24"
+                >
                   {group && (
                     <h2 className="text-lg sm:text-2xl font-bold mb-4 border-l-4 border-brand pl-3">{group}</h2>
                   )}
