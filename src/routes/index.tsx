@@ -2,9 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLiveCatalog } from "@/hooks/use-live-catalog";
 import { About } from "@/components/site/About";
 import { Reviews } from "@/components/site/Reviews";
-import plasticTankImg from "@/assets/catalog/plastic-tank.jpg";
-import cementTankImg from "@/assets/catalog/cement-tank.jpg";
-import solarImg from "@/assets/catalog/solar.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,44 +25,6 @@ export const Route = createFileRoute("/")({
 function Home() {
   const catalog = useLiveCatalog();
   const topCategories = catalog.filter((c) => !c.parent);
-  const cleaningCat = catalog.find((c) => c.id === "cleaning");
-  const countBySub = (sub: string) =>
-    cleaningCat?.items.filter((i) => i.subcategory === sub).length ?? 0;
-
-  type VirtualCat = {
-    id: string;
-    name: string;
-    blurb: string;
-    image: string;
-    hash: string;
-    count: number;
-  };
-  const virtualCleaningCats: VirtualCat[] = [
-    {
-      id: "plastic-water-tank",
-      name: "Plastic Water Tank Cleaning",
-      blurb: "Deep cleaning & sanitization for plastic water tanks.",
-      image: plasticTankImg,
-      hash: "plastic-water-tank-cleaning",
-      count: countBySub("Plastic Water Tank Cleaning"),
-    },
-    {
-      id: "cement-water-tank",
-      name: "Cement Water Tank Cleaning",
-      blurb: "Roof-top & underground cement tank cleaning.",
-      image: cementTankImg,
-      hash: "cement-water-tank-cleaning",
-      count: countBySub("Cement Water Tank Cleaning"),
-    },
-    {
-      id: "solar-panel",
-      name: "Solar Panel Cleaning",
-      blurb: "Boost output with professional solar panel cleaning.",
-      image: solarImg,
-      hash: "solar-panel-cleaning",
-      count: countBySub("Solar Panel Cleaning"),
-    },
-  ];
 
   const mobileTopIds = ["home-services", "cleaning"];
   const mobileTop = topCategories.filter((c) => mobileTopIds.includes(c.id));
@@ -103,36 +62,6 @@ function Home() {
     </Link>
   );
 
-  const renderVirtualCard = (v: VirtualCat) => (
-    <Link
-      key={v.id}
-      to="/categories/$id"
-      params={{ id: "cleaning" }}
-      hash={v.hash}
-      className="card-hover group relative overflow-hidden rounded-2xl border border-border bg-card"
-    >
-      <div className="aspect-[4/3] overflow-hidden bg-muted">
-        <img
-          src={v.image}
-          alt={v.name}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-      </div>
-      <div className="p-3 sm:p-4">
-        <h3 className="text-sm sm:text-base font-semibold leading-snug line-clamp-2">
-          {v.name}
-        </h3>
-        <p className="mt-1 text-xs text-muted-foreground line-clamp-2 hidden sm:block">
-          {v.blurb}
-        </p>
-        <div className="mt-2 text-xs font-semibold text-brand">
-          {v.count} services →
-        </div>
-      </div>
-    </Link>
-  );
-
   return (
     <div>
       <section className="pt-6 pb-4 sm:pt-10 sm:pb-8">
@@ -154,23 +83,12 @@ function Home() {
             {mobileTop.map((c) => renderCard(c))}
           </div>
 
-          {/* Mobile: virtual cleaning subcategories shown next to Cleaning Services */}
-          <div className="grid grid-cols-2 gap-3 sm:hidden mb-3">
-            {virtualCleaningCats.map((v) => renderVirtualCard(v))}
-          </div>
-
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
             {restCategories.map((c) => renderCard(c))}
             {/* On sm+ show the top two cards inside the grid too */}
             {mobileTop.map((c) => (
               <div key={c.id} className="hidden sm:block">
                 {renderCard(c)}
-              </div>
-            ))}
-            {/* Virtual cleaning subcategories appear right next to Cleaning Services on sm+ */}
-            {virtualCleaningCats.map((v) => (
-              <div key={v.id} className="hidden sm:block">
-                {renderVirtualCard(v)}
               </div>
             ))}
           </div>
